@@ -1,66 +1,167 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<!-- Link TOP -->
+<a name="top"></a>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<!-- Cabecera -->
+<div align="center">
 
-## About Laravel
+<!-- Logo <img> -->
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<h1> Sidebar en proyecto Laravel con Vue </h1>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<h3>Prueba de Vue en última versión de Laravel</h3>
+<span>
+Versión 1.0 - PHP 8.1 - Laravel 10.37.3 - Vue 3
+</span>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+</div>
 
-## Learning Laravel
+<!-- Tabla de contenidos -->
+<details>
+<summary><h2>Tabla de contenidos</h2></summary>
+  <ol>
+    <li>
+      <a href="#empezando">Empezando</a>
+      <ul>
+        <li><a href="#prerrequisitos">Prerrequisitos</a></li>
+        <li><a href="#instalación">Instalación</a></li>
+        <li><a href="#configuración">Configuración</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contribuidores">Contribuidores</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#documentación-adicional-y-reconocimienos">Documentación adicional y Reconocimientos</a></li>    
+    <li><a href="#proyectos-relacionados">Proyectos relacionados</a></li>
+  </ol>
+</details>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<h2>Empezando</h2>
+Este puede ser un ejemplo de como podrías dar las instrucciones para levantar tu proyecto localmente. Para tener una copia local hay que correr los siguientes pasos.
+<h3>Prerrequisitos</h3>
+Contar con php 8 o superior.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<strong><p align="right"><a href="#top">Volver 👆🏻</a></p></strong>
 
-## Laravel Sponsors
+<h3>Instalación</h3>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Crear nuevo proyecto Laravel
+    ```
+    composer create-project laravel/laravel nombre-aplicacion
+    ```
+2. Instalar Vue 3
+   ```
+   npm install
+   npm install vue@next vue-loader@next
+   ```
+3. Instalar plugin de Vue desde Vite
+   ```
+   npm i @vitejs/plugin-vue
+   ```
+4. Editar el archivo `vite.config.js`
+   ```
+   // vite.config.js
+    import { defineConfig } from 'vite';
+    import laravel from 'laravel-vite-plugin';
 
-### Premium Partners
+    import vue from '@vitejs/plugin-vue'
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+    export default defineConfig({
+        plugins: [
+            vue(),
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+            laravel({
+                input: ['resources/css/app.css', 'resources/js/app.js'],
+                refresh: true,
+            }),
+        ],
+    });
+   ```
+5. Editar el archivo `app.js` que esta dentro de la carpeta `resources/js`
+    ```
+    import {createApp} from 'vue'
 
-## Code of Conduct
+    \import App from './App.vue'
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    createApp(App).mount("#app")
+    ```
+6. Agregar al archivo `.blade.php` el componente de #app dentro de la carpeta `resources/views`
+7. Crear archivo `App.vue` dentro de la carpeta `resources/js`
+    ```
+    <template>
+    <h1>
+        Tu componente de Vue
+    </h1>
+    </template>
+    ```
+8. Agregar ruta en el archivo `web.php` dentro de la carpeta `routes`
+    ```
+    <?php
 
-## Security Vulnerabilities
+    use Illuminate\Support\Facades\Route;
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    Route::get('/', function () {
+        return view('app');
+    })
+    ```
+9. Correr servidor local de PHP
+    ```
+    php artisan serve
+    ```
+10. Correr servidor local de Node
+    ```
+    npm run dev
+    ```
 
-## License
+<strong><p align="right"><a href="#top">Volver 👆🏻</a></p></strong>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<h3>Configuración</h3>
+En este espacio se pueden mostrar ejemplos de cómo puede ser usado el proyecto. Adicionalmente agregar screenshots, ejemplos de código y demos de buen funcionamiento. Además agregar el link a la documentación para más recursos. 
+
+_Para más ejemplos, por favor referirse a la [Documentación](https://example.com)_
+
+<strong><p align="right"><a href="#top">Volver 👆🏻</a></p></strong>
+
+<h2>Roadmap</h2>
+Aquí se indican las funcionalidades agregadas y las pendientes por agregar:
+
+- [x] Agregar Tabla de contenidos
+- [x] Agregar los links para volver arriba
+- [ ] Agregar ejemplos adicionales
+- [ ] Agregar componentes para fácilmente copiar y pegar en tu README
+- [ ] Crear versiones en otros idiomas
+    - [ ] Inglés
+    - [ ] Francés
+    - [ ] Portugués
+
+Tambien podes ver los [issues abiertos](https://github.com/Ginevrana/ReadMe-Template/issues) para la lista completa de funcionalidades propuestas (e issues conocidos).
+
+<strong><p align="right"><a href="#top">Volver 👆🏻</a></p></strong>
+
+<h2>Contribuidores</h2>
+Se deja constancia de colaboradores en caso de necesitar aclarar alguna duda que no se encuentre en la documentación o hacer alguna consulta sobre el proyecto.
+
+- Florencia Teresita Sanchez 
+- Github - Email
+
+<strong><p align="right"><a href="#top">Volver 👆🏻</a></p></strong>
+
+
+<h2>Documentación adicional y Reconocimienos</h2>
+Listado de documentación adicional, plugins usados y recursos (tablero de trello, planner, etc.)
+
+- Link 1
+- Link 2
+- Link 3
+
+<strong><p align="right"><a href="#top">Volver 👆🏻</a></p></strong>
+
+<h2>Proyectos relacionados</h2>
+Listado de repos o carpetas de proyectos que guarden relación o puedan resultar de interés
+
+- Repo 1
+- Sharepoint 1
+- Repo 2
+
+<strong><p align="right"><a href="#top">Volver 👆🏻</a></p></strong>
